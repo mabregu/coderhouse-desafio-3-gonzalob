@@ -7,8 +7,8 @@ class Contenedor {
         this.products = [];
     }
 
-    setProducts = (products) => {
-        this.products = products;
+    setProducts(products) {
+        return this.products = products;
     }
 
     countProducts = () => this.products.length;
