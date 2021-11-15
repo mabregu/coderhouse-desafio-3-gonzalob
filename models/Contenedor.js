@@ -46,7 +46,9 @@ class Contenedor {
         return product.length !== 0 ? product[0] : null;
     }
 
-    getAll = () => this.products;
+    getAll() {
+        return this.products;
+    }
     
 
     async deleteById(id) {
