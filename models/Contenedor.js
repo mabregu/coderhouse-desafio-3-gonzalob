@@ -11,10 +11,11 @@ class Contenedor {
         return this.products = products;
     }
 
-    countProducts = () => this.products.length;
+    countProducts() {
+        return this.products.length;
+    }
 
-    save = async (product) => {
-        
+    async save(product) {
         try {
             const id = this.products.length + 1;
             this.products.push({...product, id});
@@ -26,7 +27,7 @@ class Contenedor {
         
     }
 
-    readFileContenedor = async () => {
+    async readFileContenedor() {
         
         try {
             const file = await fs.promises.readFile(this.path, 'utf-8');
@@ -40,7 +41,7 @@ class Contenedor {
         }
     }
 
-    getById = (id) => {
+    getById(id) {
         const product = this.products.filter(  prd => prd.id === id ? prd: null);
         return product.length !== 0 ? product[0] : null;
     }
@@ -48,8 +49,7 @@ class Contenedor {
     getAll = () => this.products;
     
 
-    deleteById = async (id) => {
-
+    async deleteById(id) {
         try {
             const tempProducts = this.products.filter( prd => prd.id !== id);
             this.products = tempProducts;
@@ -57,10 +57,9 @@ class Contenedor {
         } catch(err) {
             console.log('[error deleteById(:id) method]', err);
         }
-        
     }
 
-    deleteAll = async () => {
+    async deleteAll() {
         try {
             await fs.promises.writeFile(this.path, '');  
             this.products = [];
